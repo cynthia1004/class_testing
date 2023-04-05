@@ -28,16 +28,15 @@ start_dict = {'noah': '2/23/1999',
 #               'Sarah':datetime(2001, 9, 1),
 #               'Zach': datetime(2005, 8, 8)}
 # HINT: The datetime library has a function that turns strings of the right format into dates.
-def new_dict(start_dict, key_func, val_func):
-    return {key_func(k): val_func(v) for k, v in start_dict.items()}
 
 def new_key(key):
     return key.capitalize()
 
-def new_val(val):
-    return datetime.datetime.strptime(val,'%m/%d/%Y').date()
-    
-formatted_dict = new_dict(start_dict, new_key, new_val)
-print(formatted_dict)
+def new_val(val, date_format='%m/%d/%Y'):
+    return datetime.datetime.strptime(val, date_format).date()
+
+new_dict = {new_key(key):new_val(val) for key, val in start_dict.items()}
+print(new_dict)
+
 
 
